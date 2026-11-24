@@ -1,4 +1,4 @@
-package com.shevlyagin.food_pmm.ui.theme
+package com.shevlyagin.food_pmm.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
