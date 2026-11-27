@@ -12,6 +12,31 @@ Developed as part of the **Mobile and Multimedia Device Programming (PMM)** modu
 - Floating Action Button for switching between dishes.
 - UI state management with `rememberSaveable`.
 
+## Screenshots
+
+<table>
+  <tr>
+    <td align="center">
+      <strong>Borscht</strong><br>
+      <img src="docs/screenshots/borscht.png" width="260" alt="Borscht screen">
+    </td>
+    <td align="center">
+      <strong>Pelmeni</strong><br>
+      <img src="docs/screenshots/pelmeni.png" width="260" alt="Pelmeni screen">
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <strong>Blini</strong><br>
+      <img src="docs/screenshots/blini.png" width="260" alt="Blini screen">
+    </td>
+    <td align="center">
+      <strong>About</strong><br>
+      <img src="docs/screenshots/about.png" width="260" alt="About screen">
+    </td>
+  </tr>
+</table>
+
 ## Technologies
 
 - Kotlin
