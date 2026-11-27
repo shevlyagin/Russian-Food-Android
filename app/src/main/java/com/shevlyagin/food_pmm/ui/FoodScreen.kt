@@ -2,8 +2,13 @@ package com.shevlyagin.food_pmm.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -14,11 +19,38 @@ import com.shevlyagin.food_pmm.R
 
 @Composable
 fun MyScaffold() {
+
+    var index by rememberSaveable {
+        mutableIntStateOf(0)
+    }
+
+    var foodIndex by rememberSaveable {
+        mutableIntStateOf(0)
+    }
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
+
         topBar = { MyTopAppBar() },
+
+        bottomBar = {
+            MyBottomNavigation(index) {
+                index = it
+            }
+        },
+
+        floatingActionButtonPosition = FabPosition.End,
+
+        floatingActionButton = {
+            if (index == 0) {
+                MyFAB {
+                    foodIndex = (foodIndex + 1) % 3
+                }
+            }
+        },
+
         content = { innerPadding ->
-            MyContent(innerPadding)
+            MyContent(innerPadding, index, foodIndex)
         }
     )
 }
@@ -32,7 +64,55 @@ fun MyTopAppBar() {
 }
 
 @Composable
-fun MyContent(innerPadding: PaddingValues) {
+fun MyBottomNavigation(
+    index: Int,
+    onSelect: (Int) -> Unit
+) {
+    NavigationBar {
+
+        NavigationBarItem(
+            selected = index == 0,
+            onClick = { onSelect(0) },
+            icon = {
+                Icon(Icons.Default.Home, "Food")
+            },
+            label = { Text("Food") }
+        )
+
+        NavigationBarItem(
+            selected = index == 1,
+            onClick = { onSelect(1) },
+            icon = {
+                Icon(Icons.Default.Info, "About")
+            },
+            label = { Text("About") }
+        )
+    }
+}
+
+@Composable
+fun MyContent(
+    innerPadding: PaddingValues,
+    index: Int,
+    foodIndex: Int
+) {
+    val names = listOf(
+        "Borscht",
+        "Pelmeni",
+        "Blini"
+    )
+
+    val images = listOf(
+        R.drawable.borscht,
+        R.drawable.pelmeni,
+        R.drawable.blini
+    )
+
+    val descriptions = listOf(
+        "Traditional beetroot soup.",
+        "Traditional dumplings filled with meat.",
+        "Traditional thin pancakes."
+    )
 
     Column(
         modifier = Modifier
@@ -42,23 +122,52 @@ fun MyContent(innerPadding: PaddingValues) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-        Text(
-            text = "Borscht",
-            fontSize = 30.sp
-        )
+        if (index == 0) {
 
-        Image(
-            painter = painterResource(id = R.drawable.borscht),
-            contentDescription = "Borscht",
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(220.dp)
-        )
+            Text(
+                text = names[foodIndex],
+                fontSize = 30.sp
+            )
 
-        Text(
-            text = "Traditional beetroot soup.",
-            fontSize = 18.sp
+            Image(
+                painter = painterResource(
+                    id = images[foodIndex]
+                ),
+                contentDescription = names[foodIndex],
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(220.dp)
+            )
+
+            Text(
+                text = descriptions[foodIndex],
+                fontSize = 18.sp
+            )
+
+        } else {
+
+            Text(
+                text = "About",
+                fontSize = 30.sp
+            )
+
+            Text(
+                text = "Russian cuisine is known for its traditional soups, dumplings and pancakes.",
+                fontSize = 18.sp
+            )
+        }
+    }
+}
+
+@Composable
+fun MyFAB(onClick: () -> Unit) {
+    FloatingActionButton(
+        onClick = onClick
+    ) {
+        Icon(
+            Icons.Default.ArrowForward,
+            contentDescription = "Next food"
         )
     }
 }
