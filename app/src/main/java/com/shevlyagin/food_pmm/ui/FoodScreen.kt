@@ -16,6 +16,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.shevlyagin.food_pmm.R
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.draw.clip
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 
 @Composable
 fun MyScaffold() {
@@ -59,7 +64,16 @@ fun MyScaffold() {
 @Composable
 fun MyTopAppBar() {
     TopAppBar(
-        title = { Text("Russian Food") }
+        title = {
+            Text(
+                text = "Russian Food",
+                fontWeight = FontWeight.Bold
+            )
+        },
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = Color(0xFF8B2525),
+            titleContentColor = Color.White
+        )
     )
 }
 
@@ -68,7 +82,9 @@ fun MyBottomNavigation(
     index: Int,
     onSelect: (Int) -> Unit
 ) {
-    NavigationBar {
+    NavigationBar(
+        containerColor = Color(0xFFF2DFCC)
+    ) {
 
         NavigationBarItem(
             selected = index == 0,
@@ -126,7 +142,8 @@ fun MyContent(
 
             Text(
                 text = names[foodIndex],
-                fontSize = 30.sp
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold
             )
 
             Image(
@@ -138,11 +155,13 @@ fun MyContent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(220.dp)
+                    .clip(RoundedCornerShape(16.dp))
             )
 
             Text(
                 text = descriptions[foodIndex],
-                fontSize = 18.sp
+                fontSize = 18.sp,
+                textAlign = TextAlign.Center
             )
 
         } else {
@@ -163,7 +182,9 @@ fun MyContent(
 @Composable
 fun MyFAB(onClick: () -> Unit) {
     FloatingActionButton(
-        onClick = onClick
+        onClick = onClick,
+        containerColor = Color(0xFF8B2525),
+        contentColor = Color.White
     ) {
         Icon(
             Icons.Default.ArrowForward,
