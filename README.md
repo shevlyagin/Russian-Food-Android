@@ -18,21 +18,21 @@ Developed as part of the **Mobile and Multimedia Device Programming (PMM)** modu
   <tr>
     <td align="center">
       <strong>Borscht</strong><br>
-      <img src="docs/screenshots/borscht.png" width="260" alt="Borscht screen">
+      <img src="docs/screenshots/Borscht.png" width="260" alt="Borscht screen">
     </td>
     <td align="center">
       <strong>Pelmeni</strong><br>
-      <img src="docs/screenshots/pelmeni.png" width="260" alt="Pelmeni screen">
+      <img src="docs/screenshots/Pelmeni.png" width="260" alt="Pelmeni screen">
     </td>
   </tr>
   <tr>
     <td align="center">
       <strong>Blini</strong><br>
-      <img src="docs/screenshots/blini.png" width="260" alt="Blini screen">
+      <img src="docs/screenshots/Blini.png" width="260" alt="Blini screen">
     </td>
     <td align="center">
       <strong>About</strong><br>
-      <img src="docs/screenshots/about.png" width="260" alt="About screen">
+      <img src="docs/screenshots/About.png" width="260" alt="About screen">
     </td>
   </tr>
 </table>
